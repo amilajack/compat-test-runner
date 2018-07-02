@@ -1,0 +1,7 @@
+{
+  "name": "compat-test-runner",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Amila Welihinda <amilajack@gmail.com>",
+  "license": "MIT"
+}
