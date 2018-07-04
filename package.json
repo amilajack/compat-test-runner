@@ -3,5 +3,13 @@
   "version": "1.0.0",
   "main": "index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "flow-bin": "^0.75.0",
+    "jest": "^23.2.0"
+  },
+  "dependencies": {
+    "testcafe": "^0.20.4"
+  }
 }
