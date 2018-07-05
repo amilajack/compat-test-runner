@@ -4,12 +4,19 @@
   "main": "index.js",
   "author": "Amila Welihinda <amilajack@gmail.com>",
   "license": "MIT",
+  "dependencies": {
+    "ast-metadata-inferer": "^0.0.0",
+    "dotenv": "^6.0.0",
+    "testcafe": "^0.20.4"
+  },
   "devDependencies": {
     "eslint": "^5.0.1",
     "flow-bin": "^0.75.0",
     "jest": "^23.2.0"
   },
-  "dependencies": {
-    "testcafe": "^0.20.4"
+  "scripts": {
+    "lint": "eslint .",
+    "start": "node index.js",
+    "test": "jest ."
   }
 }
