@@ -13,10 +13,12 @@ test('Compat tests', async t => {
     .then(e => e.toString())
     .then(JSON.parse);
 
-  const runComaptTests = ClientFunction(() => eval(
-    `(function() {
-      return [${records.join(',')}];
-    })()`),
+  const runComaptTests = ClientFunction(
+    () => eval(
+      `(function() {
+        return [${records.join(',')}];
+      })()`
+    ),
     {
       dependencies: {
         records
@@ -27,4 +29,6 @@ test('Compat tests', async t => {
   const compatTestResults = await runComaptTests();
 
   console.log(compatTestResults);
+
+  return compatTestResults;
 });

@@ -19,19 +19,22 @@ async function main() {
   await fs.promises.writeFile(testsPath, JSON.stringify(compatTests));
 
   let runner;
+  let testcafe;
 
   // Run the compat tests
   return createTestCafe('localhost', 1337, 1338)
-    .then(testcafe => {
-      runner = testcafe.createRunner();
-      return testcafe.createBrowserConnection();
+    .then(_testcafe => {
+      testcafe = _testcafe;
+      runner = _testcafe.createRunner();
+      return _testcafe.createBrowserConnection();
     })
     .then(remoteConnection => {
       return runner
         .src(path.join(__dirname, 'compat-tests', 'TestRunner.js'))
         .browsers('saucelabs:Chrome@beta:Windows 10')
-        .run()
-    });
+        .run();
+    })
+    .then(() => testcafe.close());
 }
 
 main();
