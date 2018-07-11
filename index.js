@@ -1,8 +1,9 @@
-const path = require('path');
-const fs = require('fs');
-const dotenv = require('dotenv');
-const createTestCafe = require('testcafe');
-const astMetadata = require('ast-metadata-inferer');
+import path from 'path';
+import fs from 'fs';
+import dotenv from 'dotenv';
+import createTestCafe from 'testcafe';
+import astMetadata from 'ast-metadata-inferer';
+
 const { AssertionFormatter } =
   require('ast-metadata-inferer/lib/helpers/AstNodeTypeTester');
 
@@ -10,7 +11,7 @@ dotenv.config();
 
 const testsPath = path.join(__dirname, 'generated-compat-tests', 'foo.js');
 
-export default async function main() {
+async function main() {
   // Generate compat tests for all the records
   const comaptRecords = astMetadata.slice(0, 10);
   const compatTests =
@@ -36,5 +37,7 @@ export default async function main() {
     })
     .then(() => testcafe.close());
 }
+
+export default main;
 
 main();
