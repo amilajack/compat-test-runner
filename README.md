@@ -1,5 +1,7 @@
 compat-test-runner
 ==================
+[![Build Status](https://travis-ci.org/amilajack/compat-test-runner.svg?branch=master&maxAge=2592)](https://travis-ci.org/amilajack/compat-test-runner)
+
 Goal: Given a compat record, return if the API is supported or not
 
 Compat records are taken from [`ast-metadata-inferer`](https://github.com/amilajack/ast-metadata-inferer)
