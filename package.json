@@ -27,7 +27,7 @@
     "lint": "eslint .",
     "preversion": "yarn build",
     "start": "node -r babel-register index.js",
-    "test": "jest ."
+    "test": "node -r babel-register index.js"
   },
   "files": [
     "lib"

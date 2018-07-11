@@ -1,6 +1,6 @@
-const path = require('path');
-const fs = require('fs');
-const TestRunner = require('../');
+import path from 'path';
+import fs from 'fs';
+import TestRunner from '../';
 
 describe('Comapt', () => {
   it('should return basic results', async () => {
