@@ -28,7 +28,8 @@ test('Compat tests', async t => {
 
   const compatTestResults = await runComaptTests();
 
-  console.log(compatTestResults);
+  const metaPath = path.join(__dirname, '..', 'meta.json');
+  await fs.promises.writeFile(metaPath, compatTestResults);
 
   return compatTestResults;
 });

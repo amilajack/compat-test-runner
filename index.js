@@ -10,7 +10,7 @@ dotenv.config();
 
 const testsPath = path.join(__dirname, 'generated-compat-tests', 'foo.js');
 
-async function main() {
+export default async function main() {
   // Generate compat tests for all the records
   const comaptRecords = astMetadata.slice(0, 10);
   const compatTests =
