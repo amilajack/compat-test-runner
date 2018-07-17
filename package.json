@@ -25,6 +25,7 @@
   "scripts": {
     "build": "NODE_ENV=production rm -rf lib && babel src --out-dir lib",
     "lint": "eslint .",
+    "list-saucelabs-browsers": "testcafe -b saucelabs",
     "preversion": "yarn build",
     "start": "node -r babel-register index.js",
     "test": "node -r babel-register index.js"

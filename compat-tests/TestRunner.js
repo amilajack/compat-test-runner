@@ -1,35 +1,40 @@
-import path from 'path';
-import fs from 'fs';
-import { Selector, ClientFunction } from 'testcafe';
+import createTestCafe from 'testcafe';
+import { AssertionFormatter }
+  from 'ast-metadata-inferer/lib/helpers/AstNodeTypeTester';
 
-fixture `Compat Test Runner`// declare the fixture
-  .page `about:blank`;  // specify the start page
+export const BROWSER_NAME_MAPPINGS = {
+  chrome: 'Chrome'
+};
 
-test('Compat tests', async t => {
-  const testsPath = path.join(__dirname, '..', 'generated-compat-tests', 'foo.js');
+type RecordType = {
+  protoChainId: string,
+  protoChain: Array<string>
+};
 
-  const records = await fs.promises
-    .readFile(testsPath)
-    .then(e => e.toString())
-    .then(JSON.parse);
+type browserNameType = 'chrome' | 'firefox';
 
-  const runComaptTests = ClientFunction(
-    () => eval(
-      `(function() {
-        return [${records.join(',')}];
-      })()`
-    ),
-    {
-      dependencies: {
-        records
-      }
-    }
-  );
+export default function TestRunner(
+  browserName: browserNameType,
+  version: number,
+  record: RecordType
+) {
+  let runner;
+  let testcafe;
 
-  const compatTestResults = await runComaptTests();
+  // Test batch
 
-  const metaPath = path.join(__dirname, '..', 'meta.json');
-  await fs.promises.writeFile(metaPath, compatTestResults);
-
-  return compatTestResults;
-});
+  // Run the compat tests
+  return createTestCafe('localhost', 1337, 1338)
+    .then(_testcafe => {
+      testcafe = _testcafe;
+      runner = _testcafe.createRunner();
+      return _testcafe.createBrowserConnection();
+    })
+    .then(remoteConnection => {
+      return runner
+        .src(path.join(__dirname, 'compat-tests', 'Test.js'))
+        .browsers('saucelabs:Chrome@57.0')
+        .run();
+    })
+    .then(() => testcafe.close());
+}

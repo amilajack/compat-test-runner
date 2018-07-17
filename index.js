@@ -3,9 +3,8 @@ import fs from 'fs';
 import dotenv from 'dotenv';
 import createTestCafe from 'testcafe';
 import astMetadata from 'ast-metadata-inferer';
-
-const { AssertionFormatter } =
-  require('ast-metadata-inferer/lib/helpers/AstNodeTypeTester');
+import { AssertionFormatter }
+  from 'ast-metadata-inferer/lib/helpers/AstNodeTypeTester';
 
 dotenv.config();
 
@@ -31,8 +30,8 @@ async function main() {
     })
     .then(remoteConnection => {
       return runner
-        .src(path.join(__dirname, 'compat-tests', 'TestRunner.js'))
-        .browsers('saucelabs:Chrome@beta:Windows 10')
+        .src(path.join(__dirname, 'compat-tests', 'Test.js'))
+        .browsers('saucelabs:Chrome@57.0')
         .run();
     })
     .then(() => testcafe.close());
